@@ -1,5 +1,8 @@
 ﻿using MyProjectBackend.DTO;
 using MyProjectBackend.Facade.Interfaces;
+using MyProjectBackend.Tests.AdditionalLogic.DummyObjects;
+
+namespace MyProjectBackend.Tests;
 
 public class InterestRepositoryTest : RepositoryBaseTest<Interest, IInterestRepostiory>
 {
@@ -7,12 +10,17 @@ public class InterestRepositoryTest : RepositoryBaseTest<Interest, IInterestRepo
 
     protected override Interest CreateEntity()
     {
-        throw new NotImplementedException();
+        return new Interest()
+        {
+            Name = DummyStorage.GetRandomDummy()
+        };
     }
 
     protected override Interest UpdateEntity(Interest entity)
     {
-        throw new NotImplementedException();
+        entity.Name = DummyStorage.GetRandomDummy() + " updated!";
+
+        return entity;
     }
 
     protected override void DeleteEntityTest() => base.DeleteEntityTest();

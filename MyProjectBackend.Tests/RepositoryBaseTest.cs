@@ -54,7 +54,10 @@ public abstract class RepositoryBaseTest<TEntity, TRepository>
 
         int id = entity.Id;
 
-        if(entity is IDeletable deletableEntity)
+        //if entity is IDeletable its isDeleted is updated
+        //so if it is not, it is deleted physically assuming its a junction table that should be used only as a data station for connecting entities
+
+        if (entity is IDeletable deletableEntity)
         {
             deletableEntity.IsDeleted = true;
 

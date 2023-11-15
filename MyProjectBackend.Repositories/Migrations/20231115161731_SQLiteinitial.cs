@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MyProjectBackend.Repositories.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class SQLiteinitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,9 +15,9 @@ namespace MyProjectBackend.Repositories.Migrations
                 name: "Interests",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(75)", maxLength: 75, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "varchar", maxLength: 75, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,14 +28,14 @@ namespace MyProjectBackend.Repositories.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<byte[]>(type: "varbinary(MAX)", nullable: false),
-                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Picture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    RegistrationDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()")
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Username = table.Column<string>(type: "varchar", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "varbinary(255)", nullable: false),
+                    Email = table.Column<string>(type: "varchar", maxLength: 50, nullable: false),
+                    Picture = table.Column<byte[]>(type: "BLOB", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -46,14 +46,14 @@ namespace MyProjectBackend.Repositories.Migrations
                 name: "Matches",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ChatEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ChatHistory = table.Column<string>(type: "VARCHAR(MAX)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    ChatStart = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GetDate()"),
-                    User1Id = table.Column<int>(type: "int", nullable: false),
-                    User2Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ChatEnd = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ChatHistory = table.Column<string>(type: "VARCHAR(255)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    ChatStart = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    User1Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    User2Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,8 +74,8 @@ namespace MyProjectBackend.Repositories.Migrations
                 name: "UserInterests",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    InterestId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    InterestId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

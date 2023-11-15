@@ -10,6 +10,9 @@ public class InterestConfiguration : IEntityTypeConfiguration<Interest>
     {
         builder.HasKey(i => i.Id);
 
+        builder.HasIndex(i => i.Name)
+            .IsUnique();
+
         builder.Property(i => i.Name)
             .HasMaxLength(75)
             .HasColumnType("varchar")

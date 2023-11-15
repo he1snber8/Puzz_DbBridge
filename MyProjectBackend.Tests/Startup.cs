@@ -9,7 +9,7 @@ public class Startup
 {
     public static void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<MyProjectDbContext>(options => options.UseSqlite(@"Data Source =C:\Users\lukak\OneDrive\Desktop\Sqlite\Demo.db"));
+        services.AddDbContext<MyProjectDbContext>(options => options.UseSqlite(@"Data Source =C:/Users/lukak/OneDrive/Desktop/Sqlite/MyProjDB.db"));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IInterestRepostiory, InterestRepository>();

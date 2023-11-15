@@ -9,6 +9,8 @@ public class MatchConfiguration : IEntityTypeConfiguration<Match>
     public void Configure(EntityTypeBuilder<Match> builder)
     {
         builder.HasKey(m => m.Id);
+        
+        builder.ToTable("Matches");
 
         builder.Property(m => m.ChatHistory)
             .HasColumnType("VARCHAR(MAX)")
