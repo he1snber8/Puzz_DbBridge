@@ -21,7 +21,7 @@ public abstract class RepositoryBaseTest<TEntity, TRepository>
     private TEntity FindEntity(int id) => _repository.Set(i => i.Id == id).SingleOrDefault() ?? throw new ArgumentException(nameof(id));
 
     [Fact]
-    public virtual void InsertEntityTest()
+    public virtual TEntity InsertEntityTest()
     {
         var entity = CreateEntity();
 
@@ -29,6 +29,8 @@ public abstract class RepositoryBaseTest<TEntity, TRepository>
         _unitOfWork.SaveChanges();
 
         Assert.True(entity.Id > 0);
+
+        return entity;
     }
 
     [Fact]

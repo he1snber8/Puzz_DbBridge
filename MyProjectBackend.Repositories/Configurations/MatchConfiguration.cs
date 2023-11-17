@@ -10,6 +10,8 @@ public class MatchConfiguration : IEntityTypeConfiguration<Match>
     {
         builder.HasKey(m => m.Id);
         
+        builder.HasIndex(m => new {m.User2Id,m.User1Id}).IsUnique();
+
         builder.ToTable("Matches");
 
         builder.Property(m => m.ChatHistory)

@@ -1,4 +1,5 @@
-﻿using MyProjectBackend.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using MyProjectBackend.DTO;
 using MyProjectBackend.Facade.Interfaces;
 
 namespace MyProjectBackend.Tests;
@@ -11,8 +12,8 @@ public class MatchRepositoryTest : RepositoryBaseTest<Match, IMatchRepository>
     {
         return new Match()
         {
-           User1Id = 1,
-           User2Id = 2,
+           User1Id = 2,
+           User2Id = 3,
         };
     }
 
@@ -23,9 +24,12 @@ public class MatchRepositoryTest : RepositoryBaseTest<Match, IMatchRepository>
         return entity;
     }
 
+    [Fact]
+    public void CollisionUserTest() => Assert.Throws<DbUpdateException>(InsertEntityTest); //for this case to be successful
+                                                                                           //id's should be the same on users
     protected override void DeleteEntityTest() => base.DeleteEntityTest();
 
-    public override void InsertEntityTest() => base.InsertEntityTest();
+    public override Match InsertEntityTest() => base.InsertEntityTest();
 
     protected override void UpdateEntityTest() => base.UpdateEntityTest();
 }

@@ -29,9 +29,34 @@ public class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository>
 
     protected override void DeleteEntityTest() => base.DeleteEntityTest();
 
-    public override void InsertEntityTest() => base.InsertEntityTest();
+    public override User InsertEntityTest() => base.InsertEntityTest();
 
     protected override void UpdateEntityTest() => base.UpdateEntityTest();
+
+    [Theory]
+    [InlineData(3,5)]
+    public void AddInterestFieldTest_A(int interestId,int UserId)
+    {
+        //var user = InsertEntityTest();
+
+        _unitOfWork.UserInterestRepository.Insert(new UserInterest { UserId = UserId, InterestId = interestId });
+        _unitOfWork.SaveChanges();
+
+        var insertedUserInterest = _unitOfWork.UserInterestRepository.Set(a => a.UserId == UserId && a.InterestId == interestId).SingleOrDefault();
+
+        Assert.NotNull(insertedUserInterest);
+        Assert.Equal(UserId, insertedUserInterest.UserId);
+        Assert.Equal(interestId, insertedUserInterest.InterestId);
+    }
+
+    [Theory]
+    [InlineData(3)]
+    public void AddInterestFieldTest_B(int interestId)
+    {
+        var user = InsertEntityTest();
+
+        AddInterestFieldTest_A(interestId,user.Id);
+    }
 
 }
 

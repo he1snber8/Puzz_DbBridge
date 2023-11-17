@@ -23,9 +23,12 @@ public class InterestRepositoryTest : RepositoryBaseTest<Interest, IInterestRepo
         return entity;
     }
 
-    protected override void DeleteEntityTest() => base.DeleteEntityTest();
+    protected override void DeleteEntityTest()
+    {
 
-    public override void InsertEntityTest() => base.InsertEntityTest();
+    }
+
+    public override Interest InsertEntityTest() => base.InsertEntityTest();
 
     protected override void UpdateEntityTest() => base.UpdateEntityTest();
 }
