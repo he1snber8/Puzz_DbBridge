@@ -1,9 +1,9 @@
 ﻿
 namespace MyProjectBackend.Tests.AdditionalLogic.DummyObjects;
 
-internal static class DummyStorage
+internal static class InterestDummyStorage
 {
-   internal static string[] dummies = {
+   internal static string[] interestDummies = {
     "Capra ibex",
     "Leptoptilos crumeniferus",
     "Agelaius phoeniceus",
@@ -43,5 +43,5 @@ internal static class DummyStorage
     "Macaca fuscata"
 };
 
-    internal static string GetRandomDummy() => dummies[Random.Shared.Next(0, dummies.Length - 1)];
+    internal static string GetRandomDummy() => interestDummies[Random.Shared.Next(0, interestDummies.Length - 1)];
 }

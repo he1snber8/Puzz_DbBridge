@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProjectBackend.Repositori
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{49CB8BDA-0C99-46DA-A19C-6D8A5D9C5FEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProjectBackend.Tests", "MyProjectBackend.Tests\MyProjectBackend.Tests.csproj", "{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProjectBackend.Tests", "MyProjectBackend.Tests\MyProjectBackend.Tests.csproj", "{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProjectBackend.Services", "MyProjectBackend.Services\MyProjectBackend.Services.csproj", "{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{319C1480-B62C-46DA-83C2-F16B3674FDF9} = {5877E0C4-C0B4-487E-98A8-CF9388082FDE}
 		{9BB78118-9FBB-424E-82B9-6E152D7EE8AB} = {97C4DC53-CD5F-416A-8A0A-710FA76FC13A}
 		{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA} = {49CB8BDA-0C99-46DA-A19C-6D8A5D9C5FEA}
+		{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F} = {5877E0C4-C0B4-487E-98A8-CF9388082FDE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD6174E3-B666-472D-9276-94273E9E9E59}

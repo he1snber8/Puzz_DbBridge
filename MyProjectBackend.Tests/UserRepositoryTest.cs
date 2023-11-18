@@ -1,28 +1,31 @@
 using MyProjectBackend.DTO;
 using MyProjectBackend.Facade.Interfaces;
+using MyProjectBackend.Tests.AdditionalLogic.DummyObjects;
 
 namespace MyProjectBackend.Tests;
 
-public class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository>
+public sealed class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository>
 {
     public UserRepositoryTest(IUnitOfWork unitOfWork, IUserRepository repository) : base(unitOfWork, repository) { }
 
     protected override User CreateEntity() {
 
-        int indx = Random.Shared.Next(5, 1000);
+        var getUser = UserDummyStorage.GetRandomDummy();
 
         return new User()
         {
-            Username = $"testUsername{indx}",
-            Email = $"testMail{indx}",
-            Password = $"testPswrd{indx}"
+            Username = getUser.Username,
+            Email = getUser.Email,
+            Password = getUser.Password
         };
             
      }
 
     protected override User UpdateEntity(User user)
     {
-        user.Username = $"testUsername{Random.Shared.Next(5, 1000)} updated!!";
+        var getUser = UserDummyStorage.GetRandomDummy();
+
+        user.Username = $"{getUser.Username} updated!!";
 
         return user;      
     }
@@ -34,11 +37,9 @@ public class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository>
     protected override void UpdateEntityTest() => base.UpdateEntityTest();
 
     [Theory]
-    [InlineData(3,5)]
-    public void AddInterestFieldTest_A(int interestId,int UserId)
+    [InlineData(2,8)]
+    public void AddInterestTest_A(int UserId, int interestId)
     {
-        //var user = InsertEntityTest();
-
         _unitOfWork.UserInterestRepository.Insert(new UserInterest { UserId = UserId, InterestId = interestId });
         _unitOfWork.SaveChanges();
 
@@ -51,11 +52,11 @@ public class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository>
 
     [Theory]
     [InlineData(3)]
-    public void AddInterestFieldTest_B(int interestId)
+    public void AddInterestTest_B(int interestId)
     {
         var user = InsertEntityTest();
 
-        AddInterestFieldTest_A(interestId,user.Id);
+        AddInterestTest_A(interestId,user.Id);
     }
 
 }

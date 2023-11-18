@@ -4,7 +4,7 @@ using MyProjectBackend.Facade.Interfaces;
 
 namespace MyProjectBackend.Tests;
 
-public class MatchRepositoryTest : RepositoryBaseTest<Match, IMatchRepository>
+public sealed class MatchRepositoryTest : RepositoryBaseTest<Match, IMatchRepository>
 {
     public MatchRepositoryTest(IUnitOfWork unitOfWork, IMatchRepository repository) : base(unitOfWork, repository) { }
 
