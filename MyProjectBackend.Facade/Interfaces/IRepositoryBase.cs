@@ -1,18 +1,17 @@
 ﻿using MyProjectBackend.DTO;
 using System.Linq.Expressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MyProjectBackend.Facade.Interfaces;
 
-public interface IRepositoryJunction<TJunction>
-    where TJunction : IJunction
+public interface ICompositeRepository<TComposite>
+    where TComposite : IBasicEntity
 {
-    void Insert(TJunction entity);
-    void Delete(TJunction entity);
-    IQueryable<TJunction> Set(Expression<Func<TJunction, bool>> predicate);
+    void Insert(TComposite entity);
+    void Delete(TComposite entity);
+    IQueryable<TComposite> Set(Expression<Func<TComposite, bool>> predicate);
 }
 
-public interface IRepositoryBase<TEntity> : IRepositoryJunction<TEntity>
+public interface IRepositoryBase<TEntity> : ICompositeRepository<TEntity>
     where TEntity : IEntity
 {
     void Update(TEntity entity);

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyProjectBackend.DTO\MyProjectBackend.DTO.csproj" />
+    <ProjectReference Include="..\MyProjectBackend.Facade\MyProjectBackend.Facade.csproj" />
+  </ItemGroup>
+
 </Project>

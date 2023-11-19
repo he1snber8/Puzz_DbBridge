@@ -6,6 +6,6 @@ public interface IInterestRepostiory : IRepositoryBase<Interest> { }
 
 public interface IUserRepository : IRepositoryBase<User> { }
 
-public interface IUserInterestRepository : IRepositoryJunction<UserInterest> { }
+public interface IUserInterestRepository : ICompositeRepository<UserInterest> { }
 
 public interface IMatchRepository : IRepositoryBase<Match> { }

@@ -1,7 +1,7 @@
 ﻿
 namespace MyProjectBackend.DTO;
 
-public class UserInterest : IJunction
+public class UserInterest : IBasicEntity
 {
     public User? User { get; set; }
     public int UserId { get; set; }

@@ -37,7 +37,7 @@ public sealed class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository
     protected override void UpdateEntityTest() => base.UpdateEntityTest();
 
     [Theory]
-    [InlineData(2,8)]
+    [InlineData(3,8)]
     public void AddInterestTest_A(int UserId, int interestId)
     {
         _unitOfWork.UserInterestRepository.Insert(new UserInterest { UserId = UserId, InterestId = interestId });

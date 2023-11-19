@@ -24,7 +24,7 @@ public class InterestRepositoryTest : RepositoryBaseTest<Interest, IInterestRepo
     }
 
     [Theory]
-    [InlineData(7)]
+    [InlineData(9)]
     public void DeleteEntityTest_S(int id)
     {
         UserInterest[]? userInterest = _unitOfWork.UserInterestRepository.Set(ui => ui.InterestId == id).ToArray();

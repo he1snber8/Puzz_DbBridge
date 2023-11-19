@@ -3,7 +3,7 @@ using MyProjectBackend.Facade.Interfaces;
 
 namespace MyProjectBackend.Repositories;
 
-internal class UserInterestRepository : JunctionRepositoryBase<UserInterest>, IUserInterestRepository
+internal class UserInterestRepository : CompositeRepositoryBase<UserInterest>, IUserInterestRepository
 {
     public UserInterestRepository(MyProjectDbContext context) : base(context) { }
 }
