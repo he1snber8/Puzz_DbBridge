@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
+builder.Configuration.AddJsonFile("appsettings.local.json");
 
 builder.Services.AddDbContext<MyProjectDbContext>(opts =>
 opts.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLConnection")));

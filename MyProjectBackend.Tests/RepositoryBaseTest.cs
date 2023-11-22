@@ -34,7 +34,7 @@ public abstract class RepositoryBaseTest<TEntity, TRepository>
     }
 
     [Fact]
-    protected virtual void UpdateEntityTest()
+    public virtual void UpdateEntityTest()
     {
         var insertedEntity = CreateEntity();
 
@@ -47,7 +47,7 @@ public abstract class RepositoryBaseTest<TEntity, TRepository>
     }
 
     [Fact]
-    protected virtual void DeleteEntityTest()
+    public virtual void DeleteEntityTest()
     {
         var entity = CreateEntity();
 

@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProjectBackend.Tests", "MyProjectBackend.Tests\MyProjectBackend.Tests.csproj", "{32D94086-3DC3-4D6F-AE4F-6A2546C9CAAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProjectBackend.Services", "MyProjectBackend.Services\MyProjectBackend.Services.csproj", "{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProjectBackend.Services", "MyProjectBackend.Services\MyProjectBackend.Services.csproj", "{9C505E9E-D900-4D9C-8A1E-DE03DA8BAA1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -27,11 +27,11 @@ public sealed class MatchRepositoryTest : RepositoryBaseTest<Match, IMatchReposi
     [Fact]
     public void CollisionUserTest() => Assert.Throws<DbUpdateException>(InsertEntityTest); //for this case to be successful
                                                                                            //id's should be the same on users
-    protected override void DeleteEntityTest() => base.DeleteEntityTest();
+    public override void DeleteEntityTest() => base.DeleteEntityTest();
 
     public override Match InsertEntityTest() => base.InsertEntityTest();
 
-    protected override void UpdateEntityTest() => base.UpdateEntityTest();
+    public override void UpdateEntityTest() => base.UpdateEntityTest();
 }
 
 

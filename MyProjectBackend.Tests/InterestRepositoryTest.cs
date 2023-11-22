@@ -57,7 +57,7 @@ public class InterestRepositoryTest : RepositoryBaseTest<Interest, IInterestRepo
 
     public override Interest InsertEntityTest() => base.InsertEntityTest();
 
-    protected override void UpdateEntityTest() => base.UpdateEntityTest();
+    public override void UpdateEntityTest() => base.UpdateEntityTest();
 }
 
 

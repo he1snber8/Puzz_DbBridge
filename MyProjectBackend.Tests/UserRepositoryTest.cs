@@ -30,11 +30,11 @@ public sealed class UserRepositoryTest : RepositoryBaseTest<User,IUserRepository
         return user;      
     }
 
-    protected override void DeleteEntityTest() => base.DeleteEntityTest();
+    public override void DeleteEntityTest() => base.DeleteEntityTest();
 
     public override User InsertEntityTest() => base.InsertEntityTest();
 
-    protected override void UpdateEntityTest() => base.UpdateEntityTest();
+    public override void UpdateEntityTest() => base.UpdateEntityTest();
 
     [Theory]
     [InlineData(3,8)]
