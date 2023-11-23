@@ -18,11 +18,15 @@ public class MatchConfiguration : IEntityTypeConfiguration<Match>
             .HasColumnType("VARCHAR(MAX)")
             .IsRequired(false);
 
-        builder.Property(m => m.IsDeleted)
+        builder.Property(m => m.IsActive)
             .HasDefaultValue(false);
 
-        builder.Property(m => m.ChatStart)
-            .HasDefaultValueSql("GetDate()");
+        builder.Property(m => m.EndDate)
+            .ValueGeneratedOnUpdate()
+            .HasColumnType("datetime");
+
+        builder.Property(m => m.StartDate)
+            .HasDefaultValueSql("GETDATE()");
 
         builder.HasOne(u => u.User1)
             .WithMany()

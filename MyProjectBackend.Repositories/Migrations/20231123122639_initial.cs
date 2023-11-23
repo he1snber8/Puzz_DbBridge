@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MyProjectBackend.Repositories.Migrations
 {
     /// <inheritdoc />
-    public partial class SQLiteinitial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,12 +30,12 @@ namespace MyProjectBackend.Repositories.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(type: "varchar", maxLength: 50, nullable: false),
+                    Username = table.Column<string>(type: "varchar", maxLength: 30, nullable: false),
                     Password = table.Column<string>(type: "varbinary(255)", nullable: false),
                     Email = table.Column<string>(type: "varchar", maxLength: 50, nullable: false),
                     Picture = table.Column<byte[]>(type: "BLOB", nullable: true),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    RegistrationDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    RegistrationDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
@@ -48,10 +48,10 @@ namespace MyProjectBackend.Repositories.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ChatEnd = table.Column<DateTime>(type: "datetime", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ChatHistory = table.Column<string>(type: "VARCHAR(255)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    ChatStart = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "GETDATE()"),
                     User1Id = table.Column<int>(type: "INTEGER", nullable: false),
                     User2Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -95,14 +95,21 @@ namespace MyProjectBackend.Repositories.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Interests_Name",
+                table: "Interests",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Matches_User1Id",
                 table: "Matches",
                 column: "User1Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Matches_User2Id",
+                name: "IX_Matches_User2Id_User1Id",
                 table: "Matches",
-                column: "User2Id");
+                columns: new[] { "User2Id", "User1Id" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserInterests_UserId",

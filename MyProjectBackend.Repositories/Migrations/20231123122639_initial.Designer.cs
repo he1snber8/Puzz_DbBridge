@@ -11,8 +11,8 @@ using MyProjectBackend.Repositories;
 namespace MyProjectBackend.Repositories.Migrations
 {
     [DbContext(typeof(MyProjectDbContextTest))]
-    [Migration("20231117094523_update.1")]
-    partial class update1
+    [Migration("20231123122639_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,21 +45,22 @@ namespace MyProjectBackend.Repositories.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ChatEnd")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("ChatHistory")
                         .HasColumnType("VARCHAR(MAX)");
 
-                    b.Property<DateTime>("ChatStart")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("GetDate()");
+                    b.Property<DateTime>("EndDate")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("datetime");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasDefaultValue(false);
+
+                    b.Property<DateTime>("StartDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("User1Id")
                         .HasColumnType("INTEGER");
@@ -107,7 +108,7 @@ namespace MyProjectBackend.Repositories.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(30)
                         .HasColumnType("varchar");
 
                     b.HasKey("Id");

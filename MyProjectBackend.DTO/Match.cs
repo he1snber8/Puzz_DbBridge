@@ -1,12 +1,12 @@
 ﻿namespace MyProjectBackend.DTO;
 
-public class Match : IEntity, IDeletable
+public class Match : IEntity
 {
     public int Id { get; }
-    public DateTime ChatEnd { get; set; }
+    public DateTime EndDate { get; set; }
     public string? ChatHistory { get; set; }
-    public bool IsDeleted { get; set; }
-    public DateTime ChatStart { get; set; }
+    public bool IsActive { get; set; }
+    public DateTime StartDate { get; set; }
 
     public User? User1 { get; set; }
     public int User1Id { get; set; }

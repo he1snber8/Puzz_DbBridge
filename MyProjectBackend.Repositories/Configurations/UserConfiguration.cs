@@ -13,7 +13,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.Username)
             .HasColumnType("varchar")
-            .HasMaxLength(50)
+            .HasMaxLength(30)
             .IsRequired();
 
         builder.HasIndex(u => u.Username)
