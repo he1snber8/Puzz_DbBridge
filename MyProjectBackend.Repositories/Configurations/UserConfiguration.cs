@@ -22,20 +22,21 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.IsDeleted)
             .HasDefaultValue(false);
 
-        builder.Property(u => u.Password)
+        builder.Property(u => u.Password)   
+            .HasColumnType("varbinary")
+            .HasMaxLength(35)
             .IsRequired()
-            .HasColumnType("varbinary(MAX)")
             .HasConversion(
             p => p.HashData(),
             p => p);
 
         builder.Property(u => u.Email)
-            .IsRequired()
             .HasMaxLength(50)
-            .HasColumnType("varchar");
+            .HasColumnType("varchar")
+            .IsRequired();
             
         builder.Property(c => c.RegistrationDate)
             .HasColumnType("datetime")
-            .HasDefaultValueSql("GETDATE()");
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
     }
 }

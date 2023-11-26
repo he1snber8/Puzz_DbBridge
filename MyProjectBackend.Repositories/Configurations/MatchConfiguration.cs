@@ -10,23 +10,23 @@ public class MatchConfiguration : IEntityTypeConfiguration<Match>
     {
         builder.HasKey(m => m.Id);
         
-        builder.HasIndex(m => new {m.User2Id,m.User1Id}).IsUnique();
+        builder.HasIndex(m => new {m.Id,m.User2Id,m.User1Id}).IsUnique();
 
         builder.ToTable("Matches");
 
         builder.Property(m => m.ChatHistory)
-            .HasColumnType("VARCHAR(MAX)")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(255)
             .IsRequired(false);
 
         builder.Property(m => m.IsActive)
-            .HasDefaultValue(false);
+            .HasDefaultValue(true);
 
         builder.Property(m => m.EndDate)
-            .ValueGeneratedOnUpdate()
             .HasColumnType("datetime");
 
         builder.Property(m => m.StartDate)
-            .HasDefaultValueSql("GETDATE()");
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
         builder.HasOne(u => u.User1)
             .WithMany()

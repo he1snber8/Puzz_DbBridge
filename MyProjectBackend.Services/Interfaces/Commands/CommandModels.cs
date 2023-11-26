@@ -6,7 +6,10 @@ public interface IUserCommand : ICommandModel<UserModel> { }
 
 public interface IIntererestCommand : ICommandModel<InterestModel> { }
 
-public interface IMatchCommand : ICommandModel<MatchModel> { }
+public interface IMatchCommand : ICommandModel<MatchModel>
+{
+    void TerminateMatch(int id);
+}
 
 
 

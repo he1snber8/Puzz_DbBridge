@@ -23,20 +23,20 @@ public class MyProjectDbContext : DbContext
     }
 }
 
-public class MyProjectDbContextTest : DbContext
-{
-    public MyProjectDbContextTest(DbContextOptions<MyProjectDbContextTest> dbContextOptions) : base(dbContextOptions) { }
+//public class MyProjectDbContextTest : DbContext
+//{
+//    public MyProjectDbContextTest(DbContextOptions<MyProjectDbContextTest> dbContextOptions) : base(dbContextOptions) { }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Match> Matchers { get; set; }
-    public DbSet<Interest> Interests { get; set; }
-    public DbSet<UserInterest> UserInterests { get; set; }
+//    public DbSet<User> Users { get; set; }
+//    public DbSet<Match> Matchers { get; set; }
+//    public DbSet<Interest> Interests { get; set; }
+//    public DbSet<UserInterest> UserInterests { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new UserInterestConfiguration());
-        modelBuilder.ApplyConfiguration(new InterestConfiguration());
-        modelBuilder.ApplyConfiguration(new MatchConfiguration());
-    }
-}
+//    protected override void OnModelCreating(ModelBuilder modelBuilder)
+//    {
+//        modelBuilder.ApplyConfiguration(new UserConfiguration());
+//        modelBuilder.ApplyConfiguration(new UserInterestConfiguration());
+//        modelBuilder.ApplyConfiguration(new InterestConfiguration());
+//        modelBuilder.ApplyConfiguration(new MatchConfiguration());
+//    }
+//}

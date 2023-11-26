@@ -10,9 +10,9 @@ using MyProjectBackend.Repositories;
 
 namespace MyProjectBackend.Repositories.Migrations
 {
-    [DbContext(typeof(MyProjectDbContextTest))]
-    [Migration("20231123122639_initial")]
-    partial class initial
+    [DbContext(typeof(MyProjectDbContext))]
+    [Migration("20231123175725_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,21 +46,21 @@ namespace MyProjectBackend.Repositories.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ChatHistory")
-                        .HasColumnType("VARCHAR(MAX)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR");
 
-                    b.Property<DateTime>("EndDate")
-                        .ValueGeneratedOnUpdate()
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
-                        .HasDefaultValue(false);
+                        .HasDefaultValue(true);
 
                     b.Property<DateTime>("StartDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<int>("User1Id")
                         .HasColumnType("INTEGER");
@@ -72,7 +72,9 @@ namespace MyProjectBackend.Repositories.Migrations
 
                     b.HasIndex("User1Id");
 
-                    b.HasIndex("User2Id", "User1Id")
+                    b.HasIndex("User2Id");
+
+                    b.HasIndex("Id", "User2Id", "User1Id")
                         .IsUnique();
 
                     b.ToTable("Matches", (string)null);
@@ -96,7 +98,8 @@ namespace MyProjectBackend.Repositories.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varbinary(MAX)");
+                        .HasMaxLength(35)
+                        .HasColumnType("varbinary");
 
                     b.Property<byte[]>("Picture")
                         .HasColumnType("BLOB");
@@ -104,7 +107,7 @@ namespace MyProjectBackend.Repositories.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Username")
                         .IsRequired()

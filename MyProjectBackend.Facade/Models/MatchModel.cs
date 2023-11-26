@@ -1,11 +1,11 @@
 ﻿
 namespace MyProjectBackend.Facade.Models;
 
-public record MatchModel : IEntityModel
-{
+public class MatchModel : IEntityModel
+{ 
     public int Id { get; }
-    public DateTime ChatStart { get; }
-    public DateTime? ChatEnd { get; }
+    public DateTime? EndDate { get; set; }
+    public bool isActive { get; set; }
     public string? ChatHistory { get; }
 
     public int User1Id { get; }

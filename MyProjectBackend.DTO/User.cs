@@ -8,7 +8,7 @@ public class User : IEntity, IDeletable
     public string Email { get; set; } = null!;
     public byte[]? Picture { get; set; }
     public bool IsDeleted { get; set; }
-    public DateTime RegistrationDate { get; set; }
+    public DateTime? RegistrationDate { get; set; }
 
     public ICollection<UserInterest>? UserInterests { get; set; }
 }

@@ -14,8 +14,8 @@ public class InterestConfiguration : IEntityTypeConfiguration<Interest>
             .IsUnique();
 
         builder.Property(i => i.Name)
-            .HasMaxLength(75)
             .HasColumnType("varchar")
+            .HasMaxLength(75)
             .IsRequired();
 
         builder.HasMany(i => i.UserInterests)

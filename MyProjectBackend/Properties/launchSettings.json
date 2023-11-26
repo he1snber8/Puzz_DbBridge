@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "MyProjectBackend-Development": {
+    "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

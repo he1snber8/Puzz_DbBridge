@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace MyProjectBackend.Repositories;
 
-internal class MatchRepository : RepositoryBase<Match>, IMatchRepository
+public class MatchRepository : RepositoryBase<Match>, IMatchRepository
 {
     public MatchRepository(MyProjectDbContext context) : base(context) { }
 }

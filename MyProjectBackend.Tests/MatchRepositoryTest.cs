@@ -8,20 +8,28 @@ public sealed class MatchRepositoryTest : RepositoryBaseTest<Match, IMatchReposi
 {
     public MatchRepositoryTest(IUnitOfWork unitOfWork, IMatchRepository repository) : base(unitOfWork, repository) { }
 
-    protected override Match CreateEntity()
-    {
-        return new Match()
-        {
-           User1Id = 2,
-           User2Id = 3,
-        };
-    }
+    protected override Match CreateEntity() => new Match { User1Id = 1, User2Id = 2 };
 
     protected override Match UpdateEntity(Match entity)
     {
         entity.ChatHistory = $"test test!!! {Random.Shared.Next(1, 100)}";
 
         return entity;
+    }
+
+    [Theory]
+    [InlineData(1)]
+    public void TerminateMatch(int id)
+    {
+       var match = _repository.Get(id);
+
+        match.IsActive = false;
+        match.EndDate = DateTime.UtcNow;
+
+        _repository.Update(match);
+        _unitOfWork.SaveChanges();
+
+        Assert.True(!match.IsActive);
     }
 
     [Fact]

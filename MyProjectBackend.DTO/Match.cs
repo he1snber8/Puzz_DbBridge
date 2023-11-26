@@ -1,11 +1,11 @@
 ﻿namespace MyProjectBackend.DTO;
 
-public class Match : IEntity
+public class Match : IEntity, ITerminable
 {
     public int Id { get; }
-    public DateTime EndDate { get; set; }
+    public DateTime? EndDate { get; set; }
     public string? ChatHistory { get; set; }
-    public bool IsActive { get; set; }
+    public bool? IsActive { get; set; }
     public DateTime StartDate { get; set; }
 
     public User? User1 { get; set; }
