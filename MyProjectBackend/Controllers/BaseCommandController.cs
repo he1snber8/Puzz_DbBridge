@@ -30,7 +30,7 @@ public abstract class BaseCommandController<TModel,TCommand> : Controller
         return Ok("Entity inserted successfully!");
     }
 
-    [HttpPost("delete")]
+    [HttpDelete("delete")]
     public virtual IActionResult Delete(int id)
     {
         try

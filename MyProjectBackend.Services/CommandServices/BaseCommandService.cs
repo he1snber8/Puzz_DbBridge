@@ -26,7 +26,7 @@ public abstract class BaseCommandService<TEntityModel, TEntity,TRepository> : IC
     protected TEntityModel GetModel(int id)
     {
         return _repository.Set(p => p.Id == id).SingleOrDefault() as TEntityModel
-        ?? throw new EntityNotFoundException<TEntityModel>(id);
+        ?? throw new EntityNotFoundException<TEntity>(id);
     }
 
 

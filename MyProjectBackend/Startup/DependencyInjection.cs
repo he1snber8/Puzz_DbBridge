@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using Microsoft.OpenApi.Models;
 using MyProjectBackend.Facade;
 using MyProjectBackend.Facade.Interfaces;
 using MyProjectBackend.Repositories;
@@ -13,18 +15,28 @@ public static class DependencyInjection
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(opts =>
+        {
+            opts.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme(new OpenApiSecurityScheme { Scheme = "Bearer", In = ParameterLocation.Header, Type = SecuritySchemeType.Http, BearerFormat = "JWT" }));
+            opts.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                   new OpenApiSecurityScheme { Reference = new OpenApiReference { Id = "Bearer", Type = ReferenceType.SecurityScheme } }, new List<string>()
+                }
+            });
+        });
 
         services.AddDbContext<MyProjectDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("MSSQLConnection"));
+            options.UseSqlite(configuration.GetConnectionString("SQLiteConnection"));
         });
 
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository,UserRepository>();
         services.AddScoped<IMatchRepository, MatchRepository>();
         services.AddScoped<IInterestRepostiory, InterestRepository>();
 
-        services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IUserCommand, UserCommandService>();
         services.AddScoped<IIntererestCommand, InterestCommandService>();
         services.AddScoped<IMatchCommand, MatchCommandService>();
