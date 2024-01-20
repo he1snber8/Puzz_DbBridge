@@ -8,7 +8,7 @@ public interface IIntererestCommand : ICommandModel<InterestModel> { }
 
 public interface IMatchCommand : ICommandModel<MatchModel>
 {
-    void TerminateMatch(int id);
+    Task TerminateMatch(int id);
 }
 
 

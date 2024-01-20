@@ -10,11 +10,8 @@ public abstract class BaseCommandController<TModel,TCommand> : Controller
 {
     protected TCommand _command;
 
-    public BaseCommandController(TCommand command)
-    {
-        _command = command;
-    }
-
+    public BaseCommandController(TCommand command) => _command = command ?? throw new ArgumentNullException(nameof(command));
+ 
     [HttpPost("insert")]
     public virtual IActionResult Insert([FromBody] TModel model)
     {
@@ -51,7 +48,7 @@ public abstract class BaseCommandController<TModel,TCommand> : Controller
     {
         try
         {
-            _command.Update(id,model);
+            _command.Update(id, model);
         }
         catch (Exception ex)
         {

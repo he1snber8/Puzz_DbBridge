@@ -23,40 +23,36 @@ public abstract class BaseCommandService<TEntityModel, TEntity,TRepository> : IC
         _repository = repository;
     }
 
-    protected TEntityModel GetModel(int id)
-    {
-        return _repository.Set(p => p.Id == id).SingleOrDefault() as TEntityModel
+    protected TEntityModel? GetModel(int id) => _repository.Set(p => p.Id == id).SingleOrDefault() as TEntityModel
         ?? throw new EntityNotFoundException<TEntity>(id);
-    }
 
-
-    public virtual int Delete(int id)
+    public virtual async Task<int> Delete(int id)
     {
-        var entity = _repository.Set(p => p.Id == id).SingleOrDefault()
-        ?? throw new EntityNotFoundException<TEntity>(id);
+        var entity = _repository.Set(p => p.Id == id).SingleOrDefault() ??
+            throw new EntityNotFoundException<TEntity>(id);
 
         if (entity is IDeletable deletableEntity)
             deletableEntity.IsDeleted = true;
 
-        _repository.Update(entity);
-        _unitOfWork?.SaveChanges();
+         _repository.Update(entity!);
+        await _unitOfWork!.SaveChangesAsync();
 
         return entity.Id;
     }
 
-    public virtual int Insert(TEntityModel model)
+    public virtual async Task<int> Insert(TEntityModel model)
     {
-        if (model == null) throw new ArgumentNullException("Inserted entity must not be null!");
+        if (model is null) throw new ArgumentNullException("Inserted entity must not be null!");
 
         TEntity entity = _mapper.Map<TEntity>(model);
 
-        _repository.Insert(entity);
-        _unitOfWork.SaveChanges();
+         _repository.Insert(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return entity.Id;
     }
 
-    public virtual void Update(int id, TEntityModel model)
+    public virtual async Task Update(int id, TEntityModel model)
     {
         var entity = _repository.Set(u => u.Id == id).SingleOrDefault()
            ?? throw new EntityNotFoundException<TEntity>(id);
@@ -64,9 +60,7 @@ public abstract class BaseCommandService<TEntityModel, TEntity,TRepository> : IC
         if (entity is IDeletable deletableEntity && deletableEntity.IsDeleted)
             throw new EntityNotFoundException<TEntity>(id);
 
-        model = _mapper.Map<TEntityModel>(entity);
-
-        _repository.Update(entity);
-        _unitOfWork!.SaveChanges();
+           _repository.Update(entity);
+           await _unitOfWork!.SaveChangesAsync();
     }
 }

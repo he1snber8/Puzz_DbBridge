@@ -34,7 +34,7 @@ public abstract class RepositoryBase<TEntity> : DbContextConnector<TEntity, MyPr
     {
         if (id is null) throw new ArgumentNullException(nameof(id));
 
-        Delete(Get(id));
+        Delete((object)Get(id));
     }
 
     public void Delete(TEntity entity)
@@ -45,4 +45,5 @@ public abstract class RepositoryBase<TEntity> : DbContextConnector<TEntity, MyPr
     }
 
     public IEnumerable<TEntity> GetAll() => _context.Set<TEntity>().ToList();
+  
 }

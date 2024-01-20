@@ -11,7 +11,7 @@ public class UserCommandService : BaseCommandService<UserModel, User,IUserReposi
 {
     public UserCommandService(IUnitOfWork unitOfWork, IMapper mapper, IUserRepository repository) : base(unitOfWork, mapper, repository) { }
 
-    public override int Insert(UserModel model)
+    public override Task<int> Insert(UserModel model)
     {
         if (model.Username.Length < 5) throw new UserUsernameException(model.Username);
         if (model.Password.Length < 5 || !model.Password.Any(char.IsDigit)) throw new UserPasswordException(model.Password);
@@ -20,14 +20,11 @@ public class UserCommandService : BaseCommandService<UserModel, User,IUserReposi
         return base.Insert(model);
     }
 
-    public override int Delete(int id)
-    {
-        return base.Delete(id);
-    }
+    public override async Task<int> Delete(int id) => await base.Delete(id);
 
-    public override void Update(int id, UserModel model)
+    public override async Task Update(int id, UserModel model)
     {
-        base.Update(id, model);
+        await base.Update(id, model);
     }
-
+        
 }

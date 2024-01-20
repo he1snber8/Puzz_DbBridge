@@ -11,17 +11,17 @@ public class MatchCommandService : BaseCommandService<MatchModel, Match, IMatchR
 {
     public MatchCommandService(IUnitOfWork unitOfWork, IMapper mapper, IMatchRepository repository) : base(unitOfWork, mapper, repository) { }
 
-    public override int Insert(MatchModel model) => base.Insert(model);
+    public override async Task<int> Insert(MatchModel model) => await base.Insert(model);
 
-    public override int Delete(int id) => base.Delete(id);
+    public override async Task<int> Delete(int id) => await base.Delete(id);
 
-    public override void Update(int id, MatchModel model) => base.Update(id, model);
+    public override async Task Update(int id, MatchModel model) => await base.Update(id, model);
 
-    public void TerminateMatch(int id)
+    public async Task TerminateMatch(int id)
     {
         var model = GetModel(id);
 
-        if (!model.isActive) throw new EntityTerminatedException<MatchModel>(model.Id, model.EndDate);
+        if (!model!.isActive) throw new EntityTerminatedException<MatchModel>(model.Id, model.EndDate);
 
         var entity = _mapper.Map<Match>(model);
 
@@ -29,6 +29,6 @@ public class MatchCommandService : BaseCommandService<MatchModel, Match, IMatchR
         entity.EndDate = DateTime.UtcNow;
 
         _repository.Update(entity);
-        _unitOfWork.SaveChanges();
+        await _unitOfWork.SaveChangesAsync();
     }
 }

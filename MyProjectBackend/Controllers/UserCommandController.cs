@@ -10,9 +10,9 @@ public class UserCommandController : BaseCommandController<UserModel, IUserComma
 {
     public UserCommandController(IUserCommand command) : base(command) { }
 
-    public override IActionResult Insert([FromBody] UserModel model) => base.Insert(model);
+    public override IActionResult Insert([FromBody] UserModel model) =>  base.Insert(model);
 
-    public override IActionResult Delete(int id) => base.Delete(id);
+    public override IActionResult Delete(int id) =>  base.Delete(id);
 
-    public override IActionResult Update(int id, UserModel model) => base.Update(id, model);
+    public override IActionResult Update(int id, UserModel model) =>  base.Update(id, model);
 }

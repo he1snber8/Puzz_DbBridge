@@ -18,6 +18,7 @@ mono_crash.*
 
 # Ignore local settings files
 appsettings.local.json
+Properties/launchSettings.json
 
 # Ignore xunit startup file
 Startup.cs
